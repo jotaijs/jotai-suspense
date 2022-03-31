@@ -6,6 +6,7 @@
     "jotai": "latest",
     "jotai-suspense": "latest",
     "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest"
   },
   "scripts": {
