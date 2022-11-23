@@ -1,4 +1,4 @@
-import { atom } from 'jotai';
+import { atom } from 'jotai/vanilla';
 
 const pendingPromise = new Promise<never>(() => {
   // Never fulfills

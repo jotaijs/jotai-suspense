@@ -1,5 +1,6 @@
 import React, { Suspense, useState } from 'react';
-import { Provider, atom, useAtom } from 'jotai';
+import { Provider, useAtom } from 'jotai/react';
+import { atom } from 'jotai/vanilla';
 import { usePrepareAtoms } from 'jotai-suspense';
 
 const sleep = (ms: number) =>

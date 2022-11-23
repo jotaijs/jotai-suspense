@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Provider, useSetAtom, useAtomValue } from 'jotai';
+import { Provider, useSetAtom, useAtomValue } from 'jotai/react';
 import { atomWithPending } from 'jotai-suspense';
 
 const workAtom = atomWithPending<string>();

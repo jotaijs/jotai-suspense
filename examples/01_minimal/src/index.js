@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-import { atom, useAtom } from 'jotai';
+import { useAtom } from 'jotai/react';
+import { atom } from 'jotai/vanilla';
 import { usePrepareAtoms } from 'jotai-suspense';
 
 const sleep = (ms) =>
