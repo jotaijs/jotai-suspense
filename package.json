@@ -1,11 +1,11 @@
 {
   "name": "jotai-suspense",
   "description": "👻🔮",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Daishi Kato",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jotai-labs/jotai-suspense.git"
+    "url": "https://github.com/jotaijs/jotai-suspense.git"
   },
   "source": "./src/index.ts",
   "main": "./dist/index.umd.js",
