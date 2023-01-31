@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import React, { Suspense } from 'react';
-import { atom, useAtom } from 'jotai';
+import { useAtom } from 'jotai/react';
+import { atom } from 'jotai/vanilla';
 import { usePrepareAtoms } from '../src/index';
 
 describe('usePrepareAtoms spec', () => {

@@ -4896,10 +4896,10 @@ jest@^28.1.1:
     import-local "^3.0.2"
     jest-cli "^28.1.1"
 
-jotai@^1.7.2:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/jotai/-/jotai-1.7.2.tgz#80587cf10f51a614c2028688e12d2abc6ac0b00c"
-  integrity sha512-ksvpW1Wu+/HwW1iDYq23PpXLu2df5Vv+eWw70jRAx7IEY4c+qRsORULnqPFurSy/X8LSoPcRhVDJx/cyf8jjMg==
+jotai@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-1.11.0.tgz#d2a666f16935797743eb41a3b75583ea4e17fefb"
+  integrity sha512-8OzJmRxcTZoAOJSz6uTnmofmjAOgNOdAOy26rvyw3OBxt6XIoklNnfUTCm8wgp84SSLJbPZA01VS5O/SUz+QYg==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"

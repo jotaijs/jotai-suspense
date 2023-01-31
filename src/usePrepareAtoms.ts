@@ -1,24 +1,32 @@
-import { useMemo } from 'react';
-import { atom, useAtom } from 'jotai';
-import type { Atom } from 'jotai';
-import { waitForAll } from 'jotai/utils';
+import { useMemo, useState } from 'react';
+import { useAtomValue } from 'jotai/react';
+import { atom } from 'jotai/vanilla';
+import type { Atom } from 'jotai/vanilla';
 
-type Scope = symbol | string | number;
+const useMemoList = <T>(list: T[], compareFn = (a: T, b: T) => a === b) => {
+  const [state, setState] = useState(list);
+  const listChanged =
+    list.length !== state.length ||
+    list.some((arg, index) => !compareFn(arg, state[index] as T));
+  if (listChanged) {
+    // schedule update, triggers re-render
+    setState(list);
+  }
+  return listChanged ? list : state;
+};
 
-export function usePrepareAtoms(atoms: Atom<unknown>[], scope?: Scope) {
-  const allAtom = waitForAll(atoms);
-  useAtom(
+type Options = Parameters<typeof useAtomValue>[1];
+
+export function usePrepareAtoms(atoms: Atom<unknown>[], options?: Options) {
+  const stableAtoms = useMemoList(atoms);
+  useAtomValue(
     useMemo(
       () =>
         atom((get) => {
-          try {
-            get(allAtom);
-          } catch (e) {
-            // ignored
-          }
+          stableAtoms.map(get);
         }),
-      [allAtom],
+      [stableAtoms],
     ),
-    scope,
+    options,
   );
 }
