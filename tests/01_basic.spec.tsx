@@ -1,8 +1,9 @@
+import { describe, it } from 'vitest';
 import { render } from '@testing-library/react';
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { useAtom } from 'jotai/react';
 import { atom } from 'jotai/vanilla';
-import { usePrepareAtoms } from '../src/index';
+import { usePrepareAtoms } from 'jotai-suspense';
 
 describe('usePrepareAtoms spec', () => {
   it('one atom', async () => {

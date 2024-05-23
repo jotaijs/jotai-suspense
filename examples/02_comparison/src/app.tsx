@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import { Suspense, useState } from 'react';
 import { Provider, useAtom } from 'jotai/react';
 import { atom } from 'jotai/vanilla';
 import { usePrepareAtoms } from 'jotai-suspense';
