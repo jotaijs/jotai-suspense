@@ -1,10 +1,9 @@
-import React, { Suspense } from 'react';
-import { createRoot } from 'react-dom/client';
+import { Suspense } from 'react';
 import { useAtom } from 'jotai/react';
 import { atom } from 'jotai/vanilla';
 import { usePrepareAtoms } from 'jotai-suspense';
 
-const sleep = (ms) =>
+const sleep = (ms: number) =>
   new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
@@ -47,4 +46,4 @@ const App = () => {
   );
 };
 
-createRoot(document.getElementById('app')).render(<App />);
+export default App;

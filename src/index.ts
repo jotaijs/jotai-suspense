@@ -1,2 +1,2 @@
-export { atomWithPending } from './atomWithPending';
-export { usePrepareAtoms } from './usePrepareAtoms';
+export { atomWithPending } from './atomWithPending.js';
+export { usePrepareAtoms } from './usePrepareAtoms.js';

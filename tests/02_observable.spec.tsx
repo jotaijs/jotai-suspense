@@ -1,10 +1,11 @@
 // See: https://github.com/pmndrs/jotai/discussions/2007
-import React, { Suspense, StrictMode } from 'react';
+import { describe, it } from 'vitest';
+import { Suspense, StrictMode } from 'react';
 import { useAtomValue } from 'jotai/react';
 import { atomWithObservable } from 'jotai/vanilla/utils';
 import { Subject, map } from 'rxjs';
 import { act, fireEvent, render } from '@testing-library/react';
-import { usePrepareAtoms } from '../src/index';
+import { usePrepareAtoms } from 'jotai-suspense';
 
 describe('usePrepareAtoms w/ useObservable spec', () => {
   it('writable count state without initial value and rxjs chain', async () => {
