@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- `useAtomValue` that doesn't resolve promises
+
 ## [0.3.0] - 2024-05-24
 
 ### Changed
