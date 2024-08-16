@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.4.0] - 2024-08-16
+
 ### Added
 
 - feat: `useAtomValue` that doesn't resolve promises #7
