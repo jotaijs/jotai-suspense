@@ -4,7 +4,7 @@ import { Suspense, StrictMode } from 'react';
 import { useAtomValue } from 'jotai/react';
 import { atomWithObservable } from 'jotai/vanilla/utils';
 import { Subject, map } from 'rxjs';
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { usePrepareAtoms } from 'jotai-suspense';
 
 describe('usePrepareAtoms w/ useObservable spec', () => {
@@ -38,22 +38,24 @@ describe('usePrepareAtoms w/ useObservable spec', () => {
       return null;
     };
 
-    const { findByText, getByText } = render(
-      <StrictMode>
-        <Prepare />
-        <Suspense fallback="loading">
-          <CounterValue />
-        </Suspense>
-        <CounterButton />
-      </StrictMode>,
-    );
+    await act(async () => {
+      render(
+        <StrictMode>
+          <Prepare />
+          <Suspense fallback="loading">
+            <CounterValue />
+          </Suspense>
+          <CounterButton />
+        </StrictMode>,
+      );
+    });
 
-    await findByText('loading');
+    await screen.findByText('loading');
 
-    fireEvent.click(getByText('button'));
-    await findByText('single: 2, double: 4');
+    fireEvent.click(screen.getByText('button'));
+    await screen.findByText('single: 2, double: 4');
 
     act(() => single$.next(3));
-    await findByText('single: 3, double: 6');
+    await screen.findByText('single: 3, double: 6');
   });
 });
