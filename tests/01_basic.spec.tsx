@@ -1,5 +1,5 @@
 import { describe, it } from 'vitest';
-import { render } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { Suspense } from 'react';
 import { useAtom } from 'jotai/react';
 import { atom } from 'jotai/vanilla';
@@ -34,12 +34,14 @@ describe('usePrepareAtoms spec', () => {
       );
     };
 
-    const { findByText } = render(
-      <div>
-        <Main />
-      </div>,
-    );
+    await act(async () => {
+      render(
+        <div>
+          <Main />
+        </div>,
+      );
+    });
 
-    await findByText('count: 1');
+    await screen.findByText('count: 1');
   });
 });

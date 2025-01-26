@@ -1,5 +1,4 @@
 import { useDebugValue, useEffect, useReducer } from 'react';
-import type { ReducerWithoutAction } from 'react';
 import type { Atom, ExtractAtomValue } from 'jotai/vanilla';
 import { useStore } from 'jotai/react';
 
@@ -26,10 +25,7 @@ export function useAtomValue<Value>(atom: Atom<Value>, options?: Options) {
   const store = useStore(options);
 
   const [[valueFromReducer, storeFromReducer, atomFromReducer], rerender] =
-    useReducer<
-      ReducerWithoutAction<readonly [Value, Store, typeof atom]>,
-      undefined
-    >(
+    useReducer<readonly [Value, Store, typeof atom], undefined, []>(
       (prev) => {
         const nextValue = store.get(atom);
         if (

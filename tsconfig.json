@@ -12,7 +12,7 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "jotai-suspense": ["./src/index.js"]
+      "jotai-suspense": ["./src/index.ts"]
     }
   },
   "exclude": ["dist", "examples"]
