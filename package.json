@@ -68,7 +68,7 @@
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "6.0.0-rc.1",
     "happy-dom": "^16.7.2",
-    "jotai": "^2.11.1",
+    "jotai": "^2.12.5",
     "jotai-suspense": "link:",
     "prettier": "^3.4.2",
     "react": "^19.0.0",
@@ -82,7 +82,7 @@
     "vitest": "^3.0.4"
   },
   "peerDependencies": {
-    "jotai": ">=2.0.0",
+    "jotai": ">=2.12.2",
     "react": ">=18.0.0"
   }
 }
