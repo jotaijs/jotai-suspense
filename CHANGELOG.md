@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.4.2] - 2025-06-18
+
+### Changed
+
+- chore: sync useAtomValue implementation #11
+
 ## [0.4.1] - 2025-02-25
 
 ### Changed
