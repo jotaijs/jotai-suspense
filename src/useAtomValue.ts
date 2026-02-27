@@ -1,8 +1,7 @@
-import { useDebugValue, useEffect, useReducer } from 'react';
-import type { Atom, ExtractAtomValue } from 'jotai/vanilla';
-import { INTERNAL_registerAbortHandler as registerAbortHandler } from 'jotai/vanilla/internals';
+import React, { useDebugValue, useEffect, useReducer } from 'react';
+import { INTERNAL_getBuildingBlocksRev2 as INTERNAL_getBuildingBlocks } from 'jotai/vanilla/internals';
+import type { Atom, ExtractAtomValue } from 'jotai';
 import { useStore } from 'jotai/react';
-import React from 'react';
 
 // Unlike useAtomValue from 'jotai/react',
 // this hook doesn't resolve promises.
@@ -41,9 +40,12 @@ const continuablePromiseMap = new WeakMap<
 >();
 
 const createContinuablePromise = <T>(
+  store: Store,
   promise: PromiseLike<T>,
   getValue: () => PromiseLike<T> | T,
 ) => {
+  const buildingBlocks = INTERNAL_getBuildingBlocks(store);
+  const registerAbortHandler = buildingBlocks[26];
   let continuablePromise = continuablePromiseMap.get(promise);
   if (!continuablePromise) {
     continuablePromise = new Promise<T>((resolve, reject) => {
@@ -65,7 +67,7 @@ const createContinuablePromise = <T>(
             continuablePromiseMap.set(nextValue, continuablePromise!);
             curr = nextValue;
             nextValue.then(onFulfilled(nextValue), onRejected(nextValue));
-            registerAbortHandler(nextValue, onAbort);
+            registerAbortHandler(store, nextValue, onAbort);
           } else {
             resolve(nextValue);
           }
@@ -74,7 +76,7 @@ const createContinuablePromise = <T>(
         }
       };
       promise.then(onFulfilled(promise), onRejected(promise));
-      registerAbortHandler(promise, onAbort);
+      registerAbortHandler(store, promise, onAbort);
     });
     continuablePromiseMap.set(promise, continuablePromise);
   }
@@ -131,7 +133,7 @@ export function useAtomValue<Value>(atom: Atom<Value>, options?: Options) {
           const value = store.get(atom);
           if (isPromiseLike(value)) {
             attachPromiseStatus(
-              createContinuablePromise(value, () => store.get(atom)),
+              createContinuablePromise(store, value, () => store.get(atom)),
             );
           }
         } catch {
@@ -151,7 +153,9 @@ export function useAtomValue<Value>(atom: Atom<Value>, options?: Options) {
 
   useDebugValue(value);
   if (isPromiseLike(value)) {
-    const promise = createContinuablePromise(value, () => store.get(atom));
+    const promise = createContinuablePromise(store, value, () =>
+      store.get(atom),
+    );
     if (promiseStatus) {
       attachPromiseStatus(promise);
     }
