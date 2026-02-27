@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.5.0] - 2025-02-27
+
+### Changed
+
+- fix: incompatibility with latest Jotai version #12
+
 ## [0.4.2] - 2025-06-18
 
 ### Changed
