@@ -1,16 +1,17 @@
-name: CI
+name: pkg-pr-new
 
 on:
   push:
     branches: [main]
   pull_request:
     types: [opened, synchronize]
+  merge_group:
 
 permissions:
   contents: read
 
 jobs:
-  test:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -22,4 +23,5 @@ jobs:
           node-version: 'lts/*'
           cache: 'pnpm'
       - run: pnpm install
-      - run: pnpm test
+      - run: pnpm run compile
+      - run: pnpm dlx pkg-pr-new publish
